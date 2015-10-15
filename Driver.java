@@ -1,8 +1,16 @@
+import java.util.Random;
+
+
 public class Driver 
 {
 	public static void main(String[] args) 
 	{		
-		int[] ar = {7,8,1,3,4,2};
+		Random r = new Random();
+		int[] ar = new int[10];
+		for(int i = 0; i < ar.length; i++)
+		{
+			ar[i] = r.nextInt(50);
+		}
 		Driver.display(ar);
 		Driver.mergerSort(ar);
 		Driver.display(ar);
@@ -26,7 +34,6 @@ public class Driver
 	
 	static void mergeSortHelper(int[] ar, int begin, int end)
 	{
-		Driver.display(ar, begin, end);
 		if(begin != end)
 		{
 			int leftBegin = begin;
@@ -36,12 +43,6 @@ public class Driver
 			Driver.mergeSortHelper(ar, leftBegin, leftEnd);
 			Driver.mergeSortHelper(ar, rightBegin, rightEnd);
 			
-			//when we return here, we have two partially sorted lists
-			//now we need to merge them together into a single list
-			//where all the values are sorted.  Create a new array of
-			//the correct length, then perform the merge algorithm to fill
-			//that array with the correct data.  Then copy the contents
-			//of that array back over the original array from begin to end
 			int[] temp = new int[rightEnd - leftBegin + 1];
 			int currLeft = leftBegin;
 			int currRight = rightBegin;
